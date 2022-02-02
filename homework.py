@@ -123,8 +123,11 @@ def read_package(workout_type: str, data: list) -> Training:
         'RUN': Running,
         'WLK': SportsWalking
     }
-    work = work_training[workout_type](*data)
-    return work
+    try:
+        work = work_training[workout_type](*data)
+        return work
+    except KeyError:
+        print('Данная тренировка отсуствует')
 
 
 def main(training: Training) -> None:
